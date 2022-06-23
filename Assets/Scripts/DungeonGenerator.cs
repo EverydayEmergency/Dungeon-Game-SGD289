@@ -13,12 +13,14 @@ public class DungeonGenerator : MonoBehaviour
     public Vector2 size;
     public int startPos = 0;
     public GameObject room;
+    public GameObject firstRoom;
     public Vector2 offset; //distance between each room
 
     List<Cell> board;
     // Start is called before the first frame update
     void Start()
     {
+        GlobalVar.floorNum += 1;
         MazeGenerator();
     }
 
@@ -35,7 +37,14 @@ public class DungeonGenerator : MonoBehaviour
             for (int j = 0; j < size.y; j++)
             {
                 Cell currentCell = board[Mathf.FloorToInt(i + j * size.x)];
-                if (currentCell.visited)
+                if (currentCell == board[0] && currentCell.visited && GlobalVar.floorNum == 1)
+                {
+                    var newRoom = Instantiate(firstRoom, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
+                    newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status);
+
+                    newRoom.name += " " + i + "-" + j;
+                }
+                if (currentCell.visited && currentCell != board[0])
                 {
                     var newRoom = Instantiate(room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
                     newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status);
@@ -49,7 +58,8 @@ public class DungeonGenerator : MonoBehaviour
     void MazeGenerator()
     {
         board = new List<Cell>();
-
+        
+        //Makes the board
         for (int i = 0; i < size.x; i++)
         {
             for (int j = 0; j < size.y; j++)
@@ -92,8 +102,8 @@ public class DungeonGenerator : MonoBehaviour
             else
             {
                 path.Push(currentCell);
-
-                int newCell = neighbors[Random.Range(0, neighbors.Count)];
+                
+                int newCell = neighbors[Random.Range(0, neighbors.Count)];          
 
                 if(newCell > currentCell)
                 {

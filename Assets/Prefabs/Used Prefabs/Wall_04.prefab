@@ -3,8 +3,7 @@
 --- !u!1 &339159925754344537
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 5108468234862722293, guid: 24b6dc3d242f0c34e88b523040f81e71,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 5108468234862722293, guid: 24b6dc3d242f0c34e88b523040f81e71, type: 3}
   m_PrefabInstance: {fileID: 4778351008436243981}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6

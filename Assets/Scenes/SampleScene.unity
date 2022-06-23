@@ -331,7 +331,8 @@ MonoBehaviour:
   size: {x: 10, y: 10}
   startPos: 0
   room: {fileID: 3420981215142613694, guid: a27b44e96dbf31b4fb1fe4301e8828ea, type: 3}
-  offset: {x: 12, y: 12}
+  firstRoom: {fileID: 6712361152822295361, guid: 5992115ce28a2434b8eb1a9058348abf, type: 3}
+  offset: {x: 12.01, y: 12.01}
 --- !u!4 &1819495573
 Transform:
   m_ObjectHideFlags: 0
