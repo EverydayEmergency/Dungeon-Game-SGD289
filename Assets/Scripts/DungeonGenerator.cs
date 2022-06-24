@@ -12,8 +12,7 @@ public class DungeonGenerator : MonoBehaviour
 
     public Vector2 size;
     public int startPos = 0;
-    public GameObject room;
-    public GameObject firstRoom;
+    public GameObject[] rooms;
     public Vector2 offset; //distance between each room
 
     List<Cell> board;
@@ -37,16 +36,11 @@ public class DungeonGenerator : MonoBehaviour
             for (int j = 0; j < size.y; j++)
             {
                 Cell currentCell = board[Mathf.FloorToInt(i + j * size.x)];
-                if (currentCell == board[0] && currentCell.visited && GlobalVar.floorNum == 1)
-                {
-                    var newRoom = Instantiate(firstRoom, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
-                    newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status);
-
-                    newRoom.name += " " + i + "-" + j;
-                }
+                
                 if (currentCell.visited && currentCell != board[0])
                 {
-                    var newRoom = Instantiate(room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
+                    int randomRoom = Random.Range(0, rooms.Length);
+                    var newRoom = Instantiate(rooms[randomRoom], new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
                     newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status);
 
                     newRoom.name += " " + i + "-" + j;
