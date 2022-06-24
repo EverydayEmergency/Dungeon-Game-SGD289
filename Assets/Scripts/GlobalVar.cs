@@ -5,4 +5,5 @@ using UnityEngine;
 public class GlobalVar : MonoBehaviour
 {
     public static int floorNum;
+    public static int highestFloorNum;
 }

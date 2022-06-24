@@ -18,14 +18,24 @@ public class DungeonGenerator : MonoBehaviour
         public Vector2Int maxPosition;
 
         public bool obligatory;
+        public bool startRoom;
+        public bool endRoom;
 
         public int ProbabilityOfSpawning(int x, int y)
         {
-            // 0 = cannot spawn, 1 = can spawn, 2 = HAS to spawn
+            // 0 = cannot spawn, 1 = can spawn, 2 = HAS to spawn, 3 = the starting room, 4 = the ending room
 
             if (x >= minPosition.x && x <= maxPosition.x && y >= minPosition.y && y <= maxPosition.y)
             {
                 return obligatory ? 2 : 1; //if its obligatory return 2 otherwise return 1
+            }
+            if (startRoom)
+            {
+                return 3;
+            }
+            if (endRoom)
+            {
+                return 4;
             }
 
             return 0;
@@ -38,20 +48,8 @@ public class DungeonGenerator : MonoBehaviour
     public Vector2 offset; //distance between each room
 
     List<Cell> board;
-    // Start is called before the first frame update
-    void Start()
-    {
-        GlobalVar.floorNum += 1;
-        MazeGenerator();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void GenerateDungeon()
+    public void GenerateDungeon()
     {
         for (int i = 0; i < size.x; i++)
         {
@@ -78,6 +76,7 @@ public class DungeonGenerator : MonoBehaviour
                             avalibleRooms.Add(k);
                         }
 
+
                         if(randomRoom == -1)
                         {
                             if (avalibleRooms.Count > 0)
@@ -101,7 +100,7 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    void MazeGenerator()
+    public void MazeGenerator()
     {
         board = new List<Cell>();
         
