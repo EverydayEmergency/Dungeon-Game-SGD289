@@ -331,9 +331,23 @@ MonoBehaviour:
   size: {x: 10, y: 10}
   startPos: 0
   rooms:
-  - {fileID: 3420981215142613694, guid: a27b44e96dbf31b4fb1fe4301e8828ea, type: 3}
-  - {fileID: 3361833337746673089, guid: feb0ea6536150c6448db2fd540f26234, type: 3}
-  offset: {x: 12.01, y: 12.01}
+  - room: {fileID: 3420981215142613694, guid: a27b44e96dbf31b4fb1fe4301e8828ea, type: 3}
+    minPosition: {x: 0, y: 0}
+    maxPosition: {x: 10, y: 10}
+    obligatory: 0
+  - room: {fileID: 3361833337746673089, guid: feb0ea6536150c6448db2fd540f26234, type: 3}
+    minPosition: {x: 0, y: 0}
+    maxPosition: {x: 10, y: 10}
+    obligatory: 0
+  - room: {fileID: 6712361152822295361, guid: 5992115ce28a2434b8eb1a9058348abf, type: 3}
+    minPosition: {x: 0, y: 1}
+    maxPosition: {x: 0, y: 1}
+    obligatory: 1
+  - room: {fileID: 6227465003997518963, guid: 6a9ea8b98403a2040902cf1148a00b77, type: 3}
+    minPosition: {x: 9, y: 8}
+    maxPosition: {x: 9, y: 8}
+    obligatory: 1
+  offset: {x: 12, y: 12}
 --- !u!4 &1819495573
 Transform:
   m_ObjectHideFlags: 0
