@@ -5,10 +5,12 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     private DungeonGenerator generator;
-    private bool floorEndReached;
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        GlobalVar.size.x = 3;
+        GlobalVar.size.y = 3;
         generator = GetComponent<DungeonGenerator>();
         StartNewGame();
     }
@@ -16,23 +18,34 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(GlobalVar.newFloor == true)
+        {
+            GlobalVar.newFloor = false;
+            GlobalVar.floorNum += 1;
+            NewFloor();
+        }
     }
 
     void StartNewGame()
     {
         GlobalVar.floorNum = 1;
         NewFloor();
-        floorEndReached = false;
+        
+    }
+
+    public void DisposeOldDungeon()
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Generated");
+        foreach (GameObject go in objects)
+        {
+            Destroy(go);
+        }
     }
 
     void NewFloor()
     {
+        DisposeOldDungeon();
         generator.MazeGenerator();
     }
 
-    void OnFloorEndTrigger(GameObject trigger, GameObject other)
-    {
-        NewFloor();
-    }
 }

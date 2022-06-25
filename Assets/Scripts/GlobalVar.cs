@@ -6,4 +6,6 @@ public class GlobalVar : MonoBehaviour
 {
     public static int floorNum;
     public static int highestFloorNum;
+    public static Vector2Int size;
+    public static bool newFloor;
 }
