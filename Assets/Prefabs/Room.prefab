@@ -93,18 +93,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &4944289322547975971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786093234189844906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b99f74f52829ae9448d7062a8161394a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &3572300504248938791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118,13 +106,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0456455, y: 1.9601892, z: 0.2013745}
   m_Center: {x: 0.52362275, y: 0.0014277697, z: -0.101912156}
---- !u!114 &5166945727202924223
+--- !u!114 &4944289322547975971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292422989299303729}
+  m_GameObject: {fileID: 786093234189844906}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b99f74f52829ae9448d7062a8161394a, type: 3}
@@ -143,6 +131,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0456457, y: 1.9601892, z: 0.20137455}
   m_Center: {x: 0.5236229, y: 0.0014277697, z: -0.10191218}
+--- !u!114 &5166945727202924223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292422989299303729}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b99f74f52829ae9448d7062a8161394a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2103274267020484077
 GameObject:
   m_ObjectHideFlags: 0

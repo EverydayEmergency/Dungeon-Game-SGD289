@@ -10,8 +10,7 @@ public class NewFloor : MonoBehaviour
         {
             GlobalVar.size.x += 1;
             GlobalVar.size.y += 1;            
-            GlobalVar.newFloor = true;
-            Debug.Log("Working" + GlobalVar.newFloor);
+            GlobalVar.newFloor = true;           
         }
     }
 }

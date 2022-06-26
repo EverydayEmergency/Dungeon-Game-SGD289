@@ -9,8 +9,8 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        GlobalVar.size.x = 3;
-        GlobalVar.size.y = 3;
+        GlobalVar.size.x = 4;
+        GlobalVar.size.y = 4;
         generator = GetComponent<DungeonGenerator>();
         StartNewGame();
     }

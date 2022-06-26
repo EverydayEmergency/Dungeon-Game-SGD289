@@ -57,7 +57,7 @@ public class DungeonGenerator : MonoBehaviour
             {
                 Cell currentCell = board[i + j * GlobalVar.size.x];
                 
-                if (currentCell.visited && currentCell != board[0])
+                if (currentCell.visited)
                 {
                     int randomRoom = -1;
                     List<int> avalibleRooms = new List<int>();
@@ -78,7 +78,6 @@ public class DungeonGenerator : MonoBehaviour
                         }
                         else if(e == true)
                         {
-                            Debug.Log("Working");
                             randomRoom = k;
                             break;
                         }
@@ -99,7 +98,7 @@ public class DungeonGenerator : MonoBehaviour
                     }
 
                     var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
-                    newRoom.UpdateRoom(board[(i + j * GlobalVar.size.x)].status);
+                    newRoom.UpdateRoom(currentCell.status);
 
                     newRoom.name += " " + i + "-" + j;
                     newRoom.tag = "Generated";
@@ -131,10 +130,8 @@ public class DungeonGenerator : MonoBehaviour
 
         while(k < 1000)
         {
-            k++;
-
+            k++;            
             board[currentCell].visited = true;
-
             if(currentCell == board.Count - 1)
             {
                 break;
@@ -142,11 +139,10 @@ public class DungeonGenerator : MonoBehaviour
 
             //Check the cells neighbors
             List<int> neighbors = CheckNeighbors(currentCell);
-            int neighborsMax = neighbors.Count;
             if (neighbors.Count == 0) //if there are no avalible neighbors
             {
                 if(path.Count == 0) //last cell on this path
-                {
+                {                 
                     break;
                 }
                 else //current cell will become the last cell
@@ -158,7 +154,7 @@ public class DungeonGenerator : MonoBehaviour
             {
                 path.Push(currentCell);
                 int newCell;
-                if(neighbors.Count == neighborsMax) //If starting room
+                if(currentCell == 0) //If starting room
                 {
                     newCell = neighbors[neighbors.Count - 1];
                 }
@@ -171,13 +167,13 @@ public class DungeonGenerator : MonoBehaviour
                 if(newCell > currentCell)
                 {
                     //down or right
-                    if(newCell - 1 == currentCell)
+                    if(newCell - 1 == currentCell)//right
                     {
                         board[currentCell].status[2] = true;
                         currentCell = newCell;
                         board[currentCell].status[3] = true;
                     }
-                    else 
+                    else //down
                     {
                         board[currentCell].status[1] = true;
                         currentCell = newCell;
@@ -187,13 +183,13 @@ public class DungeonGenerator : MonoBehaviour
                 else
                 {
                     //up or left
-                    if (newCell + 1 == currentCell)
+                    if (newCell + 1 == currentCell)//left
                     {
                         board[currentCell].status[3] = true;
                         currentCell = newCell;
                         board[currentCell].status[2] = true;
                     }
-                    else
+                    else//up
                     {
                         board[currentCell].status[0] = true;
                         currentCell = newCell;
@@ -220,11 +216,13 @@ public class DungeonGenerator : MonoBehaviour
         {
             neighbors.Add((cell + GlobalVar.size.x));
         }
+
         //check right neighbor
         if ((cell + 1) % GlobalVar.size.x  != 0 && !board[(cell + 1)].visited) //first makes sure cell has to be different then 0
         {
             neighbors.Add((cell + 1));
         }
+
         //check left neighbor
         if (cell % GlobalVar.size.x != 0 && !board[(cell - 1)].visited) //first makes sure cell has to be different then 0
         {
