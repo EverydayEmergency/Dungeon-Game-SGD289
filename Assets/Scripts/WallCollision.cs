@@ -16,6 +16,11 @@ public class WallCollision : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
+            if(collider.tag == "Door")
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
 
         GetComponent<Collider>().enabled = true;
