@@ -102,6 +102,7 @@ public class DungeonGenerator : MonoBehaviour
 
                     newRoom.name += " " + i + "-" + j;
                     newRoom.tag = "Generated";
+                    newRoom.gameObject.layer = LayerMask.NameToLayer("Ground");
                 }                
             }
         }
