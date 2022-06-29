@@ -4,27 +4,41 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
-    [SerializeField]
-    public Transform playerBody;
-
-    float xRotation = 0f;
+    public int maxHealth = 100;
+    public int currentHealth;
+    public HealthBar healthBar;
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        GlobalVar.playerDead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("MouseX") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("MouseY") * mouseSensitivity * Time.deltaTime;
+        healthBar.SetHealth(currentHealth);
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        playerBody.Rotate(Vector3.up * mouseX);
+        if (currentHealth <= 0)
+        {
+            GlobalVar.playerDead = true;
+        }
+
+        if (Input.GetKeyDown("p"))
+        {
+            TakeDamage(10);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 }
