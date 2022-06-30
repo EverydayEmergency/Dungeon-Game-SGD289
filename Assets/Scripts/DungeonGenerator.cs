@@ -73,7 +73,7 @@ public class DungeonGenerator : MonoBehaviour
                             break;
                         }
                         else if(p == 1)
-                        {
+                        {                           
                             avalibleRooms.Add(k);
                         }
                         else if(e == true)
@@ -87,7 +87,7 @@ public class DungeonGenerator : MonoBehaviour
                         {
                             if (avalibleRooms.Count > 0)
                             {
-                                randomRoom = avalibleRooms[Random.Range(0, avalibleRooms.Count)];
+                                randomRoom = avalibleRooms[Random.Range(0, avalibleRooms.Count)];                                
                             }
                             else
                             {
@@ -96,7 +96,6 @@ public class DungeonGenerator : MonoBehaviour
                         }
 
                     }
-
                     var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
                     newRoom.UpdateRoom(currentCell.status);
 

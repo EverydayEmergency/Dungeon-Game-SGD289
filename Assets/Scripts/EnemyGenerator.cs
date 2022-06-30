@@ -32,19 +32,19 @@ public class EnemyGenerator : MonoBehaviour
     void GenerateEnemies()
     {
         int spawnNumber = 0;
-        CheckSpawnPoints();
         for (int i = 0; i < spawnPoints.Length; i++)
         {
-            int enemyIndex = GetEnemyByProbabilityRarity(probability); //which enemy to spawn
-            bool spawn = ProbablityCheck(enemies[enemyIndex].probabilityOfSpawning);
+            CheckSpawnPoints();
+            int enemyIndex = GetEnemyByProbabilityRarity(probability); //chooses which enemy to spawn
+            bool spawn = ProbablityCheck(enemies[enemyIndex].probabilityOfSpawning); //checks if that enemy is able to spawn
             if (spawn == true && spawnNumber < maxSpawnNum)
             {
                 int spawnIndex = ChooseSpawnPoints();
-                if (spawnIndex != -1)
+                if (spawnIndex != -1) //If the spawnIndex is valid
                 {
-                    var enemy = Instantiate(enemies[enemyIndex].enemy, spawnPoints[spawnIndex].transform);
-                    enemy.tag = "Enemy";
-                    spawnNumber++;
+                    var enemy = Instantiate(enemies[enemyIndex].enemy, spawnPoints[spawnIndex].transform); // Creates enemies
+                    enemy.tag = "Enemy"; //tags enemies with the Enemy tag
+                    spawnNumber++; //Increases spawn number to prevent spawning over the maximum number
                 }
             }
         }
@@ -117,6 +117,7 @@ public class EnemyGenerator : MonoBehaviour
         return 100 / itemRaritySum;
     }
 
+    //Checks if spawnPoints are active
     void CheckSpawnPoints()
     {
         for (int i = 0; i < spawnPoints.Length; i++)
@@ -132,7 +133,7 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
-    int ChooseSpawnPoints()
+    int ChooseSpawnPoints() //Randomly chooses a spawn point
     {
         for (int i = 0; i < spawnPoints.Length; i++)
         {

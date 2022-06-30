@@ -333,7 +333,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.5
+  m_Height: 1.7
   m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 799293238}
-  speed: 12
+  speed: 6
   gravity: -9.8
   groundCheck: {fileID: 934544771}
   groundDistance: 0.4
@@ -1001,7 +1001,7 @@ RectTransform:
   m_GameObject: {fileID: 1698420105}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.175, y: 0.77494, z: 1}
+  m_LocalScale: {x: 0.84931344, y: 0.5601421, z: 0.72282}
   m_Children:
   - {fileID: 1553877454}
   - {fileID: 1185824551}
@@ -1011,7 +1011,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 191, y: -58}
+  m_AnchoredPosition: {x: 141, y: -41}
   m_SizeDelta: {x: 231.1447, y: 76.49719}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1698420107
@@ -1195,7 +1195,7 @@ GameObject:
   - component: {fileID: 1819495572}
   - component: {fileID: 1819495574}
   m_Layer: 0
-  m_Name: Generator
+  m_Name: DungeonGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
