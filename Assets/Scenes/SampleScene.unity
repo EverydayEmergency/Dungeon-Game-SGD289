@@ -1215,7 +1215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPos: 0
   rooms:
-  - room: {fileID: 3420981215142613694, guid: a27b44e96dbf31b4fb1fe4301e8828ea, type: 3}
+  - room: {fileID: 6858840312528113899, guid: 3b344dc7b566e3844b45bff7e0fb2bcb, type: 3}
     minPosition: {x: 0, y: 0}
     maxPosition: {x: 10, y: 10}
     obligatory: 0
@@ -1223,11 +1223,11 @@ MonoBehaviour:
     minPosition: {x: 0, y: 0}
     maxPosition: {x: 10, y: 10}
     obligatory: 0
-  - room: {fileID: 6227465003997518963, guid: 6a9ea8b98403a2040902cf1148a00b77, type: 3}
+  - room: {fileID: 8733269798848134077, guid: d4d9b07ea316ea34fa18206e21a0c042, type: 3}
     minPosition: {x: 9, y: 9}
     maxPosition: {x: 9, y: 9}
     obligatory: 0
-  - room: {fileID: 6712361152822295361, guid: 5992115ce28a2434b8eb1a9058348abf, type: 3}
+  - room: {fileID: 3846856429384616670, guid: 7d5d0350608afd04c86ade73a04bbad3, type: 3}
     minPosition: {x: 0, y: 0}
     maxPosition: {x: 0, y: 0}
     obligatory: 1
