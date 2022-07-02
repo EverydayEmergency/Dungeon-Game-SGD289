@@ -1213,25 +1213,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5953a975675674d488734a6a15c040b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startIndex: 0
+  endIndex: 0
   startPos: 0
   rooms:
   - room: {fileID: 6858840312528113899, guid: 3b344dc7b566e3844b45bff7e0fb2bcb, type: 3}
     minPosition: {x: 0, y: 0}
     maxPosition: {x: 10, y: 10}
     obligatory: 0
-  - room: {fileID: 3361833337746673089, guid: feb0ea6536150c6448db2fd540f26234, type: 3}
+    startingRoom: 0
+    endingRoom: 0
+  - room: {fileID: 2582565594111737765, guid: b2999c2732c8b5148b08713e015d3d33, type: 3}
     minPosition: {x: 0, y: 0}
     maxPosition: {x: 10, y: 10}
     obligatory: 0
+    startingRoom: 0
+    endingRoom: 0
   - room: {fileID: 8733269798848134077, guid: d4d9b07ea316ea34fa18206e21a0c042, type: 3}
     minPosition: {x: 9, y: 9}
     maxPosition: {x: 9, y: 9}
     obligatory: 0
+    startingRoom: 0
+    endingRoom: 1
   - room: {fileID: 3846856429384616670, guid: 7d5d0350608afd04c86ade73a04bbad3, type: 3}
     minPosition: {x: 0, y: 0}
     maxPosition: {x: 0, y: 0}
-    obligatory: 1
-  offset: {x: 12, y: 12}
+    obligatory: 0
+    startingRoom: 1
+    endingRoom: 0
+  offset: {x: 12.01, y: 12.01}
 --- !u!4 &1819495573
 Transform:
   m_ObjectHideFlags: 0

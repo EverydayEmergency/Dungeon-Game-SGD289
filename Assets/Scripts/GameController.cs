@@ -12,17 +12,24 @@ public class GameController : MonoBehaviour
         GlobalVar.size.x = 4;
         GlobalVar.size.y = 4;
         generator = GetComponent<DungeonGenerator>();
+        generator.RoomsAvalible();
         StartNewGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GlobalVar.newFloor == true)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            GlobalVar.newFloor = false;
             GlobalVar.floorNum += 1;
             NewFloor();
+            
+        }
+        if(GlobalVar.newFloor == true)
+        {           
+            GlobalVar.floorNum += 1;
+            NewFloor();
+            GlobalVar.newFloor = false;
         }
     }
 
@@ -44,6 +51,8 @@ public class GameController : MonoBehaviour
 
     void NewFloor()
     {
+        GlobalVar.size.x++;
+        GlobalVar.size.y++;
         DisposeOldDungeon();
         generator.MazeGenerator();
     }

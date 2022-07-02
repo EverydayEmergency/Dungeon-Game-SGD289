@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 3010596417523435178}
   - component: {fileID: 3286664713356046}
   - component: {fileID: 8481880553167729629}
+  - component: {fileID: 269354826482433486}
   m_Layer: 0
   m_Name: SlimePBR 1
   m_TagString: Untagged
@@ -333,7 +334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2923694864670635206}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.880222, y: -4.6230936, z: -20.47826}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2925782204364080494}
@@ -375,7 +376,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!65 &8481880553167729629
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -389,6 +390,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.9559729, z: 1}
   m_Center: {x: 0, y: 0.4906069, z: 0}
+--- !u!64 &269354826482433486
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2923694864670635206}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &2923913574055946034
 GameObject:
   m_ObjectHideFlags: 0

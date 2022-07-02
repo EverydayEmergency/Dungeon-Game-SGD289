@@ -18,6 +18,8 @@ public class DungeonGenerator : MonoBehaviour
         public Vector2Int maxPosition;
 
         public bool obligatory;
+        public bool startingRoom;
+        public bool endingRoom;
 
         public int ProbabilityOfSpawning(int x, int y)
         {
@@ -31,6 +33,15 @@ public class DungeonGenerator : MonoBehaviour
             return 0;
         }
 
+        public bool StartRoom(int x, int y)
+        {
+            if(x == 0 && y == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public bool EndRoom(int x, int y)
         {
             if (x == GlobalVar.size.x - 1 && y == GlobalVar.size.y - 1)
@@ -42,13 +53,14 @@ public class DungeonGenerator : MonoBehaviour
 
     }
 
-    
+    public int startIndex;
+    public int endIndex;
     public int startPos = 0;
     public Rule[] rooms;
     public Vector2 offset; //distance between each room
 
     List<Cell> board;
-
+    List<int> avalibleRooms = new List<int>();
     public void GenerateDungeon()
     {
         for (int i = 0; i < GlobalVar.size.x; i++)
@@ -59,44 +71,9 @@ public class DungeonGenerator : MonoBehaviour
                 
                 if (currentCell.visited)
                 {
-                    int randomRoom = -1;
-                    List<int> avalibleRooms = new List<int>();
-
-                    for (int k = 0; k < rooms.Length; k++)
-                    {
-                        int p = rooms[k].ProbabilityOfSpawning(i, j);
-                        bool e = rooms[k].EndRoom(i, j);
-                        
-                        if(p == 2) //Obligatory
-                        {
-                            randomRoom = k;
-                            break;
-                        }
-                        else if(p == 1)
-                        {                           
-                            avalibleRooms.Add(k);
-                        }
-                        else if(e == true)
-                        {
-                            randomRoom = k;
-                            break;
-                        }
-
-
-                        if(randomRoom == -1)
-                        {
-                            if (avalibleRooms.Count > 0)
-                            {
-                                randomRoom = avalibleRooms[Random.Range(0, avalibleRooms.Count)];                                
-                            }
-                            else
-                            {
-                                randomRoom = 0;
-                            }
-                        }
-
-                    }
-                    var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
+                    int room = RoomType(i, j);
+                    
+                    var newRoom = Instantiate(rooms[room].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
                     newRoom.UpdateRoom(currentCell.status);
 
                     newRoom.name += " " + i + "-" + j;
@@ -107,6 +84,44 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
+    public void RoomsAvalible()
+    {
+        for (int k = 0; k < rooms.Length; k++)
+        {
+            if (rooms[k].startingRoom == false && rooms[k].endingRoom == false)
+            {
+                avalibleRooms.Add(k);
+            }
+            else if (rooms[k].startingRoom)
+            {
+                startIndex = k;
+            }
+            else if (rooms[k].endingRoom)
+            {
+                endIndex = k;
+            }
+
+        }
+    }
+    public int RoomType(int i, int j)
+    {
+        for (int k = 0; k < rooms.Length; k++)
+        {          
+            bool s = rooms[k].StartRoom(i, j);
+            bool e = rooms[k].EndRoom(i, j);
+            
+            if (e)
+            {
+                return endIndex;
+            }
+            else if (s)
+            {
+                return startIndex;
+            }
+        }       
+        int rnd = Random.Range(0, avalibleRooms.Count);
+        return rnd;
+    }
     
 
     public void MazeGenerator()

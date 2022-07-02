@@ -7,7 +7,7 @@ public class WallCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, .01f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, .001f);
 
         foreach (Collider collider in colliders)
         {
