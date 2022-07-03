@@ -7,12 +7,14 @@ public class PlayerWeaponController : MonoBehaviour{
     public GameObject EquippedWeapon { get; set; }
 
     CharacterStats characterStats;
+    Transform spawnProjectile;
 
     IWeapon equippedWeapon;
+
     void Start()
     {
+        spawnProjectile = transform.Find("ProjectileSpawn");
         characterStats = GetComponent<CharacterStats>();
-
     }
     public void EquipWeapon(Item itemToEquip)
     {
@@ -24,7 +26,11 @@ public class PlayerWeaponController : MonoBehaviour{
 
         EquippedWeapon = (GameObject)Instantiate(Resources.Load<GameObject>("Weapons/" + itemToEquip.ObjectSlug), 
             playerHand.transform.position, playerHand.transform.rotation);
+        
         equippedWeapon = EquippedWeapon.GetComponent<IWeapon>();
+        if(EquippedWeapon.GetComponent<IProjectileWeapon>() != null) 
+            EquippedWeapon.GetComponent<IProjectileWeapon>().ProjectileSpawn = spawnProjectile; //If a weapon has a projectile spawn
+        
         equippedWeapon.Stats = itemToEquip.Stats; //To know what stats to remove upon being equipped
         EquippedWeapon.transform.SetParent(playerHand.transform); //Parent is now the player hand
         characterStats.AddStatBonus(itemToEquip.Stats);
