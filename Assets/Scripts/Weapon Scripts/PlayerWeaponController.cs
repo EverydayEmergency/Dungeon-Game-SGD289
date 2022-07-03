@@ -29,7 +29,14 @@ public class PlayerWeaponController : MonoBehaviour{
         EquippedWeapon.transform.SetParent(playerHand.transform); //Parent is now the player hand
         characterStats.AddStatBonus(itemToEquip.Stats);
 
-        Debug.Log(equippedWeapon.Stats[0].GetCalculatedStatValue());
+        //Debug.Log(equippedWeapon.Stats[0].GetCalculatedStatValue());
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            PerformWeaponAttack();
+        }   
     }
 
     public void PerformWeaponAttack()
