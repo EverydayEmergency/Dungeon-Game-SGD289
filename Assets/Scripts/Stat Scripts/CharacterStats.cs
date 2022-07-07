@@ -9,7 +9,8 @@ public class CharacterStats : MonoBehaviour
     void Start()
     {
         stats.Add(new BaseStat(4, "Power", "Your power level."));
-        stats.Add(new BaseStat(2, "Vitality", "Your vitality level"));
+        stats.Add(new BaseStat(2, "Toughness", "Your toughness level"));
+        stats.Add(new BaseStat(2, "Atk Spd", "Your speed level"));
     }
 
     public void AddStatBonus(List<BaseStat> statBonuses) //Passes multiple stats

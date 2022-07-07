@@ -25,8 +25,8 @@
     ]
   },
   {
-    "objectSlug": "staff",
-    "itemName": "Cactus",
+    "objectSlug": "fire_staff",
+    "itemName": "Fire Staff",
     "description": "A long, sharp cactus.",
     "itemType": "Weapon",
     "actionName": "Equip",
@@ -40,7 +40,7 @@
       {
         "StatType": "Toughness",
         "BaseValue": 2,
-        "StatName": "Tougness"
+        "StatName": "Toughness"
       },
       {
         "StatType": "AttackSpeed",
