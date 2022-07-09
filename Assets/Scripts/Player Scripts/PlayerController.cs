@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public CharacterStats characterStats;
+   
+    public int maxHealth;
     public int currentHealth;
     public HealthBar healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
+        characterStats = new CharacterStats(10, 10, 10, 10);
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         GlobalVar.playerDead = false;
@@ -25,12 +29,12 @@ public class PlayerController : MonoBehaviour
             currentHealth = maxHealth;
         }
 
-        if (currentHealth <= 0)
-        {
-            GlobalVar.playerDead = true;
-        }
+        //if (currentHealth <= 0)
+        //{
+        //    GlobalVar.playerDead = true;
+        //}
 
-        if (Input.GetKeyDown("p"))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             TakeDamage(10);
         }
@@ -38,7 +42,14 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("Player takes " + damage + " damage!");
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+    }
+
+    private void Die()
+    {
+        Debug.Log("Player Dead. Reset Health.");
+        currentHealth = maxHealth;
     }
 }

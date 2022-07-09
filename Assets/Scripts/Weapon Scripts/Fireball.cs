@@ -10,7 +10,7 @@ public class Fireball : MonoBehaviour
 
     Vector3 spawnPosition;
 
-    void Start()
+    public void StartingValues()
     {
         Range = 20f;
         Damage = 4;

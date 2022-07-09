@@ -6,15 +6,17 @@ public class Staff : MonoBehaviour, IWeapon, IProjectileWeapon
 {
     private Animator animator;
     public List<BaseStat> Stats { get; set; }
+    public int CurrentDamage { get; set; }
     public Transform ProjectileSpawn { get; set; }
     Fireball fireball;
 
     void Start()
     {
         fireball = Resources.Load<Fireball>("Weapons/Projectiles/Fireball");
+        fireball.StartingValues();
         animator = GetComponent<Animator>();
     }
-    public void PerformAttack()
+    public void PerformAttack(int damage)
     {
         animator.SetTrigger("Base_Attack");
     }

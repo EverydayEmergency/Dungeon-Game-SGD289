@@ -8,39 +8,50 @@
     "itemModifier": 0,
     "Stats": [
       {
-        "statType": "Power",
-        "baseValue": 25,
-        "statName": "Power"
+        "StatType": "Health",
+        "BaseValue": 0,
+        "StatName": "Health"
       },
       {
-        "statType": "Toughness",
-        "baseValue": 4,
-        "statName": "Toughness"
+        "StatType": "Attack",
+        "BaseValue": 25,
+        "StatName": "Attack"
       },
       {
-        "statType": "AttackSpeed",
-        "baseValue": 4,
-        "statName": "Atk Spd"
+        "StatType": "Defense",
+        "BaseValue": 4,
+        "StatName": "Defense"
+      },
+      {
+        "StatType": "AttackSpeed",
+        "BaseValue": 4,
+        "StatName": "Atk Spd"
       }
     ]
   },
   {
     "objectSlug": "fire_staff",
     "itemName": "Fire Staff",
-    "description": "A long, sharp cactus.",
+    "description": "A staff that shoots fireballs.",
     "itemType": "Weapon",
     "actionName": "Equip",
     "itemModifier": 0,
     "Stats": [
       {
-        "statType": "Power",
-        "baseValue": 800,
-        "statName": "Power"
+        "StatType": "Health",
+        "BaseValue": 0,
+        "StatName": "Health"
       },
       {
-        "StatType": "Toughness",
+
+        "StatType": "Attack",
+        "BaseValue": 8,
+        "StatName": "Attack"
+      },
+      {
+        "StatType": "Defense",
         "BaseValue": 2,
-        "StatName": "Toughness"
+        "StatName": "Defense"
       },
       {
         "StatType": "AttackSpeed",
