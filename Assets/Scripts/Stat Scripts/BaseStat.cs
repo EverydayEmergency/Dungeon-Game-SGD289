@@ -47,7 +47,7 @@ public class BaseStat
 
     public int GetCalculatedStatValue()
     {
-        FinalValue = 0;
+        FinalValue = 0;        
         BaseAdditives.ForEach(x => FinalValue += x.BonusValue); // For each additive in base additives it will be added to final value
         FinalValue += BaseValue; // Adds the base value to the final value
         return FinalValue;

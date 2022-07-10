@@ -21,9 +21,7 @@ public class PlayerWeaponController : MonoBehaviour
     {
         if (EquippedWeapon != null)
         {
-            InventoryController.Instance.GiveItem(previouslyEquippedItem.ObjectSlug);
-            characterStats.RemoveStatBonus(EquippedWeapon.GetComponent<IWeapon>().Stats);
-            Destroy(playerHand.transform.GetChild(1).gameObject);
+            UnequipWeapon();
         }
 
         EquippedWeapon = (GameObject)Instantiate(Resources.Load<GameObject>("Weapons/" + itemToEquip.ObjectSlug),
@@ -37,7 +35,17 @@ public class PlayerWeaponController : MonoBehaviour
         EquippedWeapon.transform.SetParent(playerHand.transform); //Parent is now the player hand
         equippedWeapon.Stats = itemToEquip.Stats; //To know what stats to remove upon being equipped   
         previouslyEquippedItem = itemToEquip;
-        characterStats.AddStatBonus(itemToEquip.Stats);
+        characterStats.AddStatBonus(itemToEquip.Stats);        
+        UIEventHandler.ItemEquipped(itemToEquip);
+        UIEventHandler.StatsChanged();
+    }
+
+    public void UnequipWeapon()
+    {
+        InventoryController.Instance.GiveItem(previouslyEquippedItem.ObjectSlug);
+        characterStats.RemoveStatBonus(EquippedWeapon.GetComponent<IWeapon>().Stats);
+        Destroy(EquippedWeapon.transform.gameObject);
+        UIEventHandler.StatsChanged();
     }
     void Update()
     {
@@ -54,7 +62,9 @@ public class PlayerWeaponController : MonoBehaviour
 
     private int CalculateDamage()
     {
-        int damageToDeal = (characterStats.GetStat(BaseStat.BaseStatType.Attack).GetCalculatedStatValue() * 2) + Random.Range(2, 10);
+        int attack = characterStats.GetStat(BaseStat.BaseStatType.Attack).GetCalculatedStatValue();
+        
+        int damageToDeal = (attack * 2) + Random.Range(2, 10);
         damageToDeal += CalculateCrit(damageToDeal);
         Debug.Log("Damage dealt: " + damageToDeal);
         return damageToDeal;

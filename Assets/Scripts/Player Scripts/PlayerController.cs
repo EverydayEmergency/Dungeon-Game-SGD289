@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         GlobalVar.playerDead = false;
+        UIEventHandler.HealthChanged(this.currentHealth, this.maxHealth);
     }
 
     // Update is called once per frame
@@ -42,14 +43,18 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("Player takes " + damage + " damage!");
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
+            Die();
+        
+        UIEventHandler.HealthChanged(currentHealth, maxHealth);
     }
 
     private void Die()
     {
         Debug.Log("Player Dead. Reset Health.");
         currentHealth = maxHealth;
+        UIEventHandler.HealthChanged(currentHealth, maxHealth);
     }
 }

@@ -13,7 +13,7 @@ public class Staff : MonoBehaviour, IWeapon, IProjectileWeapon
     void Start()
     {
         fireball = Resources.Load<Fireball>("Weapons/Projectiles/Fireball");
-        fireball.StartingValues();
+        ProjectileSpawn = GameObject.FindGameObjectWithTag("Projectile Spawn").transform;
         animator = GetComponent<Animator>();
     }
     public void PerformAttack(int damage)
@@ -23,7 +23,7 @@ public class Staff : MonoBehaviour, IWeapon, IProjectileWeapon
 
     public void CastProjectile()
     {
-        Fireball fireballInstance = (Fireball)Instantiate(fireball, ProjectileSpawn.position, ProjectileSpawn.rotation);
+        Fireball fireballInstance = Instantiate(fireball, ProjectileSpawn.position, ProjectileSpawn.rotation);
         fireballInstance.Direction = ProjectileSpawn.forward;
     }
 }

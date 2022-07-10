@@ -781,6 +781,7 @@ GameObject:
   - component: {fileID: 6012947679272410202}
   - component: {fileID: 3483903148080977924}
   - component: {fileID: 1311695031205864216}
+  - component: {fileID: 7697820941856504598}
   m_Layer: 0
   m_Name: TurtleShellPBR 1
   m_TagString: Untagged
@@ -852,6 +853,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4728146, y: 1.1734288, z: 1}
   m_Center: {x: 0.019219398, y: 0.5953356, z: 0}
+--- !u!114 &7697820941856504598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5919523833729583960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945726255a3ef9d44b2fe2d8f2792342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aggroLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  currenthHealth: 0
+  maxHealth: 0
 --- !u!1 &5919533891470621038
 GameObject:
   m_ObjectHideFlags: 0
