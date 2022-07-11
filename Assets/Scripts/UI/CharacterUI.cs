@@ -10,7 +10,7 @@ public class CharacterUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //characterPanel.gameObject.SetActive(false);
+        characterPanel.gameObject.SetActive(false);
     }
     private void Update()
     {
