@@ -7,25 +7,19 @@ public class DoorController : MonoBehaviour
     Door door;
     void Start()
     {
-        door = GetComponentInChildren<Door>();
-        Collider[] colliders = Physics.OverlapSphere(transform.position, .01f);
-
-        foreach (Collider collider in colliders)
+        door = transform.Find("Door_01").GetComponent<Door>();
+        if (door.enabled == false)
         {
-            if (collider.tag == "Door")
-            {
-                gameObject.SetActive(false);
-                return;
-            }
-        }
+            return;
+        }        
     }
     public void OnTriggerEnter(Collider collider)
     {
-        if (door.gameObject.activeSelf == true)
+        if (door.enabled == true)
         {
             if (collider.tag == "Player")
             {
-                door.DoorInteract();
+                door.GetComponent<Door>().DoorInteract();
             }
         }
     }

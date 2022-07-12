@@ -13,14 +13,18 @@ public class Slime : MonoBehaviour, IEnemy
     private NavMeshAgent navAgent;
     private CharacterStats characterStats;
     private Collider[] withinAggroColliders;
+    public int Experience { get; set; }
 
     //Animation
     private Animator anim;
     bool moving = false;
+
     
 
     void Start()
     {
+        player = GameManager.gm.player.GetComponent<PlayerController>();
+        Experience = (int)((player.playerLevel.Level * 50) * 1.5);
         navAgent = GetComponent<NavMeshAgent>();
         characterStats = new CharacterStats(10, 6, 0, 2);
         currenthHealth = maxHealth;
@@ -81,8 +85,9 @@ public class Slime : MonoBehaviour, IEnemy
         navAgent.SetDestination(player.transform.position);
     }
 
-    void Die()
+    public void Die()
     {
+        CombatEvents.EnemyDied(this);
         //anim.SetTrigger("dying");
         Destroy(gameObject);
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,4 +20,6 @@ public class GameManager : MonoBehaviour
     [Header("Player Info")]
     public GameObject player;
 
+    [Header("UI Elements")]
+    public Text floorNumberText;
 }

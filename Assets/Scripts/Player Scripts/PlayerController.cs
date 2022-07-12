@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public CharacterStats characterStats;
@@ -9,10 +9,13 @@ public class PlayerController : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public HealthBar healthBar;
+    NewFloor newFloor;
+    public PlayerLevel playerLevel { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
+        playerLevel = GetComponent<PlayerLevel>();
         characterStats = new CharacterStats(10, 10, 10, 10);
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);

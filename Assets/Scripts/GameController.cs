@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     private DungeonGenerator generator;
-    
+    public FloorNumberUI floorUI;
     // Start is called before the first frame update
     void Awake()
     {
@@ -21,21 +21,18 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GlobalVar.floorNum += 1;
             NewFloor();
             
         }
         if(GlobalVar.newFloor == true)
         {           
-            GlobalVar.floorNum += 1;
             NewFloor();
-            GlobalVar.newFloor = false;
         }
     }
 
     void StartNewGame()
     {
-        GlobalVar.floorNum = 1;
+        GlobalVar.floorNum = 0;
         NewFloor();
         
     }
@@ -51,10 +48,17 @@ public class GameController : MonoBehaviour
 
     void NewFloor()
     {
-        GlobalVar.size.x++;
-        GlobalVar.size.y++;
+        GlobalVar.floorNum += 1;
+        if (GlobalVar.floorNum % 3 == 0)
+        {
+            Debug.Log("Expanding floor size");
+            GlobalVar.size.x += 1;
+            GlobalVar.size.y += 1;
+        }
+        floorUI.UpdateFloorNumberText();
         DisposeOldDungeon();
         generator.MazeGenerator();
+        GlobalVar.newFloor = false;
     }
 
 }

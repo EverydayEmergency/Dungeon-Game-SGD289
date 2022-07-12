@@ -9,31 +9,31 @@ public class Door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //if (!this.enabled) return;
         anim = GetComponent<Animator>();
-        Collider[] colliders = Physics.OverlapSphere(transform.position, .01f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, .001f);
 
         foreach (Collider collider in colliders)
-        {            
+        {         
             if (collider.tag == "Door")
             {
                 gameObject.SetActive(false);
-                return;
+                break;
             }
         }
 
         GetComponent<MeshCollider>().enabled = true;
     }
 
-    //public void OnTriggerEnter(Collider collider)
-    //{     
-    //    if (collider.tag == "Player")
-    //    {
-    //        DoorInteract();
-    //    }
-    //}
+    public void OnTriggerEnter(Collider other)
+    {
+        
+        if (other.tag == "Player") DoorInteract();
+    }
 
     public void DoorInteract()
     {
+        Debug.Log("Working");
         isOpen = !isOpen;
 
         Vector3 doorTransformDirection = transform.TransformDirection(Vector3.forward);
