@@ -9,18 +9,21 @@ public class PlayerWeaponController : MonoBehaviour
     Item previouslyEquippedItem;
     CharacterStats characterStats;
     Transform spawnProjectile;
-
+    Transform startSpawnPoint;
     IWeapon equippedWeapon;
 
     void Start()
     {
         spawnProjectile = transform.Find("ProjectileSpawn");
+        startSpawnPoint = spawnProjectile;
         characterStats = GetComponent<PlayerController>().characterStats;
     }
     public void EquipWeapon(Item itemToEquip)
     {
         if (EquippedWeapon != null)
         {
+            if (EquippedWeapon.GetComponent<IProjectileWeapon>() != null)
+                spawnProjectile = startSpawnPoint;
             UnequipWeapon();
         }
 
@@ -29,8 +32,8 @@ public class PlayerWeaponController : MonoBehaviour
 
         equippedWeapon = EquippedWeapon.GetComponent<IWeapon>();
 
-        if (EquippedWeapon.GetComponent<IProjectileWeapon>() != null)
-            EquippedWeapon.GetComponent<IProjectileWeapon>().ProjectileSpawn = spawnProjectile; //If a weapon has a projectile spawn
+        //if (EquippedWeapon.GetComponent<IProjectileWeapon>() != null)
+        //    EquippedWeapon.GetComponent<IProjectileWeapon>().ProjectileSpawn = spawnProjectile; //If a weapon has a projectile spawn
 
         EquippedWeapon.transform.SetParent(playerHand.transform); //Parent is now the player hand
         equippedWeapon.Stats = itemToEquip.Stats; //To know what stats to remove upon being equipped   

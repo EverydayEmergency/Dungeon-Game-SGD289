@@ -9,11 +9,12 @@ public class Staff : MonoBehaviour, IWeapon, IProjectileWeapon
     public int CurrentDamage { get; set; }
     public Transform ProjectileSpawn { get; set; }
     Fireball fireball;
+    public Transform spawnPoint;
 
     void Start()
     {
         fireball = Resources.Load<Fireball>("Weapons/Projectiles/Fireball");
-        ProjectileSpawn = GameObject.FindGameObjectWithTag("Projectile Spawn").transform;
+        ProjectileSpawn = spawnPoint;//new Vector3(spawnPoint.position.x, spawnPoint.position.y, spawnPoint.position.z + 0.35f);
         animator = GetComponent<Animator>();
     }
     public void PerformAttack(int damage)

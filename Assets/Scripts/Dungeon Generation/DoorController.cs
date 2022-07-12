@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    Door door;
+    void Start()
     {
-        if (other.tag == "Door")
+        door = GetComponentInChildren<Door>();
+        Collider[] colliders = Physics.OverlapSphere(transform.position, .01f);
+
+        foreach (Collider collider in colliders)
         {
-            Animator anim = other.GetComponentInChildren<Animator>();         
-                anim.SetTrigger("Open");           
+            if (collider.tag == "Door")
+            {
+                gameObject.SetActive(false);
+                return;
+            }
         }
     }
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerEnter(Collider collider)
     {
-        if (other.tag == "Door")
+        if (door.gameObject.activeSelf == true)
         {
-            Animator anim = other.GetComponentInChildren<Animator>();
-            anim.SetTrigger("Close");
+            if (collider.tag == "Player")
+            {
+                door.DoorInteract();
+            }
         }
     }
 

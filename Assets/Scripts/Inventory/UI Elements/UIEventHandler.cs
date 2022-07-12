@@ -19,7 +19,8 @@ public class UIEventHandler : MonoBehaviour
 
     public static void ItemAddedToInventory(Item item)
     {
-        OnItemAddedToInventory(item);
+        if (OnItemAddedToInventory != null)
+            OnItemAddedToInventory(item);
     }
     public static void ItemAddedToInventory(List<Item> items)
     {
@@ -34,12 +35,14 @@ public class UIEventHandler : MonoBehaviour
 
     public static void ItemEquipped(Item item)
     {
-        OnItemEquipped(item);
+        if(OnItemEquipped != null)
+            OnItemEquipped(item);
     }
 
     public static void HealthChanged(int currentHealth, int maxHealth)
     {
-        OnPlayerHealthChanged(currentHealth, maxHealth);
+        if(OnPlayerHealthChanged != null)
+            OnPlayerHealthChanged(currentHealth, maxHealth);
     }
 
     public static void StatsChanged()

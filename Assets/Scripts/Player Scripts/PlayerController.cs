@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         GlobalVar.playerDead = false;
-        //UIEventHandler.HealthChanged(currentHealth, maxHealth);
+        UIEventHandler.HealthChanged(currentHealth, maxHealth);
     }
 
     // Update is called once per frame

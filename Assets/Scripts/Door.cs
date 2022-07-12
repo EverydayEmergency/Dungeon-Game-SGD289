@@ -24,13 +24,13 @@ public class Door : MonoBehaviour
         GetComponent<MeshCollider>().enabled = true;
     }
 
-    public void OnTriggerEnter(Collider collider)
-    {     
-        if (collider.tag == "Player")
-        {
-            DoorInteract();
-        }
-    }
+    //public void OnTriggerEnter(Collider collider)
+    //{     
+    //    if (collider.tag == "Player")
+    //    {
+    //        DoorInteract();
+    //    }
+    //}
 
     public void DoorInteract()
     {

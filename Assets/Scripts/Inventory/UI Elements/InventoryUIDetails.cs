@@ -40,15 +40,18 @@ public class InventoryUIDetails : MonoBehaviour
 
     public void OnItemInteract()
     {
-        if (item.ItemType == Item.ItemTypes.Consumable)
+        if (item != null)
         {
-            InventoryController.Instance.ConsumeItem(item);
-            Destroy(selectedItemButton.gameObject);
-        }
-        else if(item.ItemType == Item.ItemTypes.Weapon)
-        {
-            InventoryController.Instance.EquipItem(item);
-            Destroy(selectedItemButton.gameObject);
+            if (item.ItemType == Item.ItemTypes.Consumable)
+            {
+                InventoryController.Instance.ConsumeItem(item);
+                Destroy(selectedItemButton.gameObject);
+            }
+            else if (item.ItemType == Item.ItemTypes.Weapon)
+            {
+                InventoryController.Instance.EquipItem(item);
+                Destroy(selectedItemButton.gameObject);
+            }
         }
         item = null;
         gameObject.SetActive(false);

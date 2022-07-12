@@ -10,7 +10,7 @@ public class Fireball : MonoBehaviour
 
     Vector3 spawnPosition;
 
-    public void StartingValues()
+    void Start()
     {
         Range = 20f;
         Damage = 4;
@@ -30,8 +30,16 @@ public class Fireball : MonoBehaviour
         if(collision.transform.tag == "Enemy")
         {
             collision.transform.GetComponent<IEnemy>().TakeDamage(Damage);
+            Extinguish();
         }
-        Extinguish();
+        else if(collision.transform.tag == "Staff")
+        {
+            return;
+        }
+        else
+        {
+            Extinguish();
+        }
     }
     void Extinguish()
     {

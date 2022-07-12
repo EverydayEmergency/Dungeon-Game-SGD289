@@ -57,7 +57,6 @@ public class CharacterPanel : MonoBehaviour
         for (int i = 0; i < player.characterStats.stats.Count; i++)
         {       
             playerStatTexts[i].text = player.characterStats.stats[i].StatName + ": " + player.characterStats.stats[i].GetCalculatedStatValue().ToString();
-            //Debug.Log(player.characterStats.stats[i].GetCalculatedStatValue());
         }
     }
 

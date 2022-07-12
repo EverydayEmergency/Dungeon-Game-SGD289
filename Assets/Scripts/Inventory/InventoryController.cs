@@ -21,6 +21,7 @@ public class InventoryController : MonoBehaviour
         GiveItem("sword");
         GiveItem("fire_staff");
         GiveItem("potion_log");
+        GiveItem("health_potion");
     }
 
     public void SetItemDetails(Item item, Button selectedButton)
