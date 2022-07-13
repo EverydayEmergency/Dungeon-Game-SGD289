@@ -14,6 +14,8 @@ public class Slime : MonoBehaviour, IEnemy
     private CharacterStats characterStats;
     private Collider[] withinAggroColliders;
     public int Experience { get; set; }
+    public DropTable DropTable { get; set; }
+    public PickupItem pickupItem;
 
     //Animation
     private Animator anim;
@@ -23,10 +25,19 @@ public class Slime : MonoBehaviour, IEnemy
 
     void Start()
     {
+        DropTable = new DropTable();
+        DropTable.loot = new List<LootDrop>
+        {
+            new LootDrop("sword", 25),
+            new LootDrop("fire_staff", 25),
+            new LootDrop("potion_log", 25)
+        };
+
         player = GameManager.gm.player.GetComponent<PlayerController>();
         Experience = (int)((player.playerLevel.Level * 50) * 1.5);
         navAgent = GetComponent<NavMeshAgent>();
         characterStats = new CharacterStats(10, 6, 0, 2);
+        maxHealth = 30;
         currenthHealth = maxHealth;
         anim = GetComponent<Animator>();
     }
@@ -87,8 +98,19 @@ public class Slime : MonoBehaviour, IEnemy
 
     public void Die()
     {
+        DropLoot();
         CombatEvents.EnemyDied(this);
         //anim.SetTrigger("dying");
         Destroy(gameObject);
+    }
+
+    void DropLoot() 
+    {
+        Item item = DropTable.GetDrop();
+        if (item != null)
+        {
+            PickupItem instance = Instantiate(pickupItem, transform.position, Quaternion.identity);
+            instance.ItemDrop = item;
+        }
     }
 }

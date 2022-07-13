@@ -32,10 +32,6 @@ public class Fireball : MonoBehaviour
             collision.transform.GetComponent<IEnemy>().TakeDamage(Damage);
             Extinguish();
         }
-        else if(collision.transform.tag == "Staff")
-        {
-            return;
-        }
         else
         {
             Extinguish();

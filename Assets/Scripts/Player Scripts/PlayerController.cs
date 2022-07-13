@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     NewFloor newFloor;
+    public PickupItem pickupItem;
     public PlayerLevel playerLevel { get; set; }
 
     // Start is called before the first frame update
@@ -59,5 +60,20 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Player Dead. Reset Health.");
         currentHealth = maxHealth;
         UIEventHandler.HealthChanged(currentHealth, maxHealth);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Item")
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (other.TryGetComponent(typeof(PickupItem), out Component pickupitem))
+                {
+                    this.pickupItem = pickupitem.GetComponent<PickupItem>();
+                    pickupItem.Interact();
+                }
+            }
+        }
     }
 }

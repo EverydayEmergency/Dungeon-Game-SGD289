@@ -1037,6 +1037,7 @@ MonoBehaviour:
   maxHealth: 30
   currentHealth: 0
   healthBar: {fileID: 573578687}
+  pickupItem: {fileID: 0}
 --- !u!114 &688000118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2507,6 +2508,7 @@ MonoBehaviour:
     m_Bits: 256
   currenthHealth: 0
   maxHealth: 40
+  pickupItem: {fileID: 0}
 --- !u!54 &1162677258
 Rigidbody:
   m_ObjectHideFlags: 0

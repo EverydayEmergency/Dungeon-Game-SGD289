@@ -52,7 +52,7 @@ public class PlayerWeaponController : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             PerformWeaponAttack();
         }

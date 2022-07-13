@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Projectile Spawn
   - Staff
+  - Item
   layers:
   - Default
   - TransparentFX

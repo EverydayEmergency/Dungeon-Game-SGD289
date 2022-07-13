@@ -782,6 +782,7 @@ GameObject:
   - component: {fileID: 3483903148080977924}
   - component: {fileID: 1311695031205864216}
   - component: {fileID: 7697820941856504598}
+  - component: {fileID: -25520337851240923}
   m_Layer: 0
   m_Name: TurtleShellPBR 1
   m_TagString: Untagged
@@ -867,9 +868,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aggroLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   currenthHealth: 0
   maxHealth: 0
+  pickupItem: {fileID: 6900330930032582161, guid: 48cfa7d04fdd17a4db539de6e72c5ac6, type: 3}
+--- !u!195 &-25520337851240923
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5919523833729583960}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5919533891470621038
 GameObject:
   m_ObjectHideFlags: 0
