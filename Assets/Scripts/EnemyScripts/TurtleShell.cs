@@ -27,9 +27,9 @@ public class TurtleShell : MonoBehaviour, IEnemy
         DropTable = new DropTable();
         DropTable.loot = new List<LootDrop>
         {
-            new LootDrop("sword", 25),
-            new LootDrop("fire_staff", 25),
-            new LootDrop("potion_log", 25)
+            new LootDrop("bronze_sword", 5),
+            new LootDrop("fire_staff", 5),
+            new LootDrop("health_potion", 10)
         };
 
         player = GameManager.gm.player.GetComponent<PlayerController>();
@@ -50,6 +50,17 @@ public class TurtleShell : MonoBehaviour, IEnemy
             {
                 ChasePlayer(withinAggroColliders[0].GetComponent<PlayerController>());
             }
+        }
+
+        if (GlobalVar.floorNum >= 3)
+        {
+            DropTable.AddItemToDrop("silver_sword", 2);
+            Debug.Log("Adding new weapon to drops");
+        }
+        if (GlobalVar.floorNum >= 6)
+        {
+            DropTable.AddItemToDrop("gold_sword", 1);
+            Debug.Log("Adding new weapon to drops");
         }
     }
 

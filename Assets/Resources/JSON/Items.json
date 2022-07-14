@@ -2,7 +2,7 @@
   {
     "objectSlug": "sword",
     "itemName": "Sword",
-    "description": "A long, sharp blade.",
+    "description": "A long, sharp iron blade.",
     "itemType": "Weapon",
     "actionName": "Equip",
     "itemModifier": 0,
@@ -61,6 +61,96 @@
     ]
   },
   {
+    "objectSlug": "bronze_sword",
+    "itemName": "Bronze Sword",
+    "description": "A bronze blade which is stronger than an iron blade.",
+    "itemType": "Weapon",
+    "actionName": "Equip",
+    "itemModifier": 0,
+    "Stats": [
+      {
+        "StatType": "Health",
+        "BaseValue": 0,
+        "StatName": "Health"
+      },
+      {
+        "StatType": "Attack",
+        "BaseValue": 10,
+        "StatName": "Attack"
+      },
+      {
+        "StatType": "Defense",
+        "BaseValue": 6,
+        "StatName": "Defense"
+      },
+      {
+        "StatType": "AttackSpeed",
+        "BaseValue": 8,
+        "StatName": "Atk Spd"
+      }
+    ]
+  },
+  {
+    "objectSlug": "silver_sword",
+    "itemName": "Silver Sword",
+    "description": "A silver blade which is stronger than an bronze blade.",
+    "itemType": "Weapon",
+    "actionName": "Equip",
+    "itemModifier": 0,
+    "Stats": [
+      {
+        "StatType": "Health",
+        "BaseValue": 5,
+        "StatName": "Health"
+      },
+      {
+        "StatType": "Attack",
+        "BaseValue": 15,
+        "StatName": "Attack"
+      },
+      {
+        "StatType": "Defense",
+        "BaseValue": 8,
+        "StatName": "Defense"
+      },
+      {
+        "StatType": "AttackSpeed",
+        "BaseValue": 10,
+        "StatName": "Atk Spd"
+      }
+    ]
+  },
+  {
+    "objectSlug": "gold_sword",
+    "itemName": "Gold Sword",
+    "description": "A gold blade which is the strongest of blades.",
+    "itemType": "Weapon",
+    "actionName": "Equip",
+    "itemModifier": 0,
+    "Stats": [
+      {
+        "StatType": "Health",
+        "BaseValue": 10,
+        "StatName": "Health"
+      },
+      {
+        "StatType": "Attack",
+        "BaseValue": 20,
+        "StatName": "Attack"
+      },
+      {
+        "StatType": "Defense",
+        "BaseValue": 10,
+        "StatName": "Defense"
+      },
+      {
+        "StatType": "AttackSpeed",
+        "BaseValue": 15,
+        "StatName": "Atk Spd"
+      }
+    ]
+  },
+  {
     "objectSlug": "potion_log",
     "itemName": "Log Potion",
     "description": "A potion that logs something to the console.",
@@ -74,7 +164,7 @@
     "description": "A potion that restores 30 health.",
     "itemType": "Consumable",
     "actionName": "Drink",
-    "itemModifier": 0   
+    "itemModifier": 0
   }
 ]
 

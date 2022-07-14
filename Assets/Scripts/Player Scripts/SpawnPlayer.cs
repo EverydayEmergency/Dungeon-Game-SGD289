@@ -7,7 +7,7 @@ public class SpawnPlayer : MonoBehaviour
     [SerializeField]
     public GameObject spawnPoint;
     // Start is called before the first frame update
-    public void Start()
+    public void Awake()
     {
         Spawn();
     }

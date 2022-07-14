@@ -20,6 +20,11 @@ public class DropTable
         }
         return null;
     }
+
+    public void AddItemToDrop(string itemSlug, int probability)
+    {
+        loot.Add(new LootDrop(itemSlug, probability));
+    }
 }
 
 public class LootDrop

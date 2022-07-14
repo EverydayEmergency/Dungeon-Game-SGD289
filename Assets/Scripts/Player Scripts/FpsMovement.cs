@@ -1,10 +1,4 @@
-﻿/*
- * written by Joseph Hocking 2017
- * released under MIT license
- * text of license https://opensource.org/licenses/MIT
- */
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,6 +27,7 @@ public class FpsMovement : MonoBehaviour
     void Start()
     {
         charController = GetComponent<CharacterController>();
+        Time.timeScale = 1;
     }
 
     void Update()
@@ -40,8 +35,7 @@ public class FpsMovement : MonoBehaviour
         MoveCharacter();      
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("button pressed");
-            stopCameraRotation = !stopCameraRotation;
+            FreezeScreen();
         }
         if (stopCameraRotation == false)
         {
@@ -65,6 +59,10 @@ public class FpsMovement : MonoBehaviour
         charController.Move(movement);
     }
 
+    public void FreezeScreen()
+    {      
+        stopCameraRotation = !stopCameraRotation;  
+    }
     private void RotateCharacter()
     {
         transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityHor, 0);
