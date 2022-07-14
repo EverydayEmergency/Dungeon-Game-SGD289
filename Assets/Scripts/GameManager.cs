@@ -22,4 +22,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Elements")]
     public Text floorNumberText;
+    public GameObject pauseMenuUI;
+    public GameObject background;
+    public GameObject invetoryPanel;
+    public GameObject characterPanel;
 }

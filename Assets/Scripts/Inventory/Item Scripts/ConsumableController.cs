@@ -16,7 +16,7 @@ public class ConsumableController : MonoBehaviour
        
         GameObject itemToSpawn = Instantiate(Resources.Load<GameObject>("Consumables/" + item.ObjectSlug));
         if (item.ItemModifier)
-        {
+        {       
             itemToSpawn.GetComponent<IConsumable>().Comsume(stats);
         }
 

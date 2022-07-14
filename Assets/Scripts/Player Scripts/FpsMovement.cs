@@ -28,6 +28,8 @@ public class FpsMovement : MonoBehaviour
 
     private CharacterController charController;
 
+    private bool stopCameraRotation = false;
+
     void Start()
     {
         charController = GetComponent<CharacterController>();
@@ -35,9 +37,17 @@ public class FpsMovement : MonoBehaviour
 
     void Update()
     {
-        MoveCharacter();
-        RotateCharacter();
-        RotateCamera();
+        MoveCharacter();      
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("button pressed");
+            stopCameraRotation = !stopCameraRotation;
+        }
+        if (stopCameraRotation == false)
+        {
+            RotateCharacter();
+            RotateCamera();
+        }
     }
 
     private void MoveCharacter()
