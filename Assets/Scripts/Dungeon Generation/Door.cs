@@ -33,7 +33,6 @@ public class Door : MonoBehaviour
 
     public void DoorInteract()
     {
-        Debug.Log("Working");
         isOpen = !isOpen;
 
         Vector3 doorTransformDirection = transform.TransformDirection(Vector3.forward);

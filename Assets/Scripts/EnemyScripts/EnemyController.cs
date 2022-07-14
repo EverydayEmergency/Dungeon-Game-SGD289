@@ -1,28 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
-    public LayerMask groundMask;
-    Vector3 velocity;
-    public float gravity = -9.81f;
-    bool isGrounded;
+    public float lookRadius = 10f;
+
+    Transform target;
+    NavMeshAgent agent;
+    [SerializeField] private LayerMask _layerMask;
+    RaycastHit hit;
     // Start is called before the first frame update
     void Start()
     {
+        target = GameManager.gm.player.transform;
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        if (isGrounded && velocity.y < 0)
+        float distance = Vector3.Distance(target.position, transform.position);
+        if (distance <= lookRadius)
         {
-            velocity.y = -2f;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, _layerMask))
+            {
+                agent.SetDestination(target.position);
+
+                if (distance <= agent.stoppingDistance)
+                {
+                    FaceTarget();
+                }
+            }
         }
-        velocity.y += gravity * Time.deltaTime;
+
+        
+    }
+
+    void FaceTarget()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 }

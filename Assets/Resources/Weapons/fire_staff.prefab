@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 4870011176895393198}
   - component: {fileID: 2002632352606977316}
   - component: {fileID: 7980922569000624077}
-  - component: {fileID: 97788101162120060}
   m_Layer: 0
   m_Name: fire_staff
   m_TagString: Item
@@ -140,7 +139,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8092327190978466179, guid: ed131d73eb72abe4b8f101dd0e896ad8, type: 3}
 --- !u!95 &7980922569000624077
@@ -162,16 +161,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!135 &97788101162120060
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887854161258983673}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: -0.000000031664968, y: -0.35824406, z: 0.027205978}

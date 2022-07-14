@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Slime : MonoBehaviour, IEnemy
+public class TurtleShell : MonoBehaviour, IEnemy
 {
     public LayerMask aggroLayerMask;
     public int currenthHealth;
@@ -63,8 +63,8 @@ public class Slime : MonoBehaviour, IEnemy
     }
 
     public void TakeDamage(int amount)
-    {     
-        if(currenthHealth <= 0)
+    {
+        if (currenthHealth <= 0)
         {
             dying = true;
             attacking = false;
@@ -79,12 +79,12 @@ public class Slime : MonoBehaviour, IEnemy
             anim.SetTrigger("TakeDamage");
             currenthHealth -= amount;
         }
-    }  
+    }
 
     void ChasePlayer(PlayerController player)
     {
         Debug.Log("Chasing");
-        if(attacking == false)
+        if (attacking == false)
             moving = true;
         navAgent.SetDestination(player.transform.position);
         this.player = player;
@@ -93,12 +93,12 @@ public class Slime : MonoBehaviour, IEnemy
         {
             FaceTarget();
             if (!IsInvoking("PerformAttack"))
-            {           
+            {
                 InvokeRepeating("PerformAttack", .5f, 2f);
             }
         }
         else
-        {      
+        {
             CancelInvoke("PerformAttack");
         }
         navAgent.SetDestination(player.transform.position);
@@ -118,7 +118,7 @@ public class Slime : MonoBehaviour, IEnemy
         Destroy(gameObject);
     }
 
-    void DropLoot() 
+    void DropLoot()
     {
         Item item = DropTable.GetDrop();
         if (item != null)

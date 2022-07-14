@@ -13,17 +13,4 @@ public class NewFloor : MonoBehaviour
             GlobalVar.newFloor = true;
         }
     }
-
-    public void MakeNewFloor()
-    {
-        GlobalVar.floorNum += 1;
-        if (GlobalVar.floorNum % 3 == 0)
-        {
-            Debug.Log("Expanding floor size");
-            GlobalVar.size.x += 1;
-            GlobalVar.size.y += 1;
-        }
-        GlobalVar.newFloor = true;
-        floorUI.UpdateFloorNumberText();
-    }
 }
