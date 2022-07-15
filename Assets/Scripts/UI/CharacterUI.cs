@@ -11,15 +11,5 @@ public class CharacterUI : MonoBehaviour
     void Start()
     {
         characterPanel.gameObject.SetActive(false);
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            menuIsActive = !menuIsActive;
-            characterPanel.gameObject.SetActive(menuIsActive);
-        }
-    }
-
-    
+    }   
 }

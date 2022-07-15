@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public CharacterStats characterStats;
@@ -11,7 +12,10 @@ public class PlayerController : MonoBehaviour
     public HealthBar healthBar;
     NewFloor newFloor;
     public PickupItem pickupItem;
+    public string mainMenuScene;
     public PlayerLevel playerLevel { get; set; }
+    public GameObject gameOverScreen;
+    public AudioSource gameOverSound;
 
     // Start is called before the first frame update
     void Start()
@@ -33,33 +37,26 @@ public class PlayerController : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-
-        //if (currentHealth <= 0)
-        //{
-        //    GlobalVar.playerDead = true;
-        //}
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TakeDamage(5);
-        }
+        if (currentHealth <= 0)
+            StartCoroutine(Die());
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-        if (currentHealth <= 0)
-            Die();
-        
+        healthBar.SetHealth(currentHealth);    
         UIEventHandler.HealthChanged(currentHealth, maxHealth);
     }
 
-    private void Die()
+    IEnumerator Die()
     {
-        Debug.Log("Player Dead. Reset Health.");
-        currentHealth = maxHealth;
-        UIEventHandler.HealthChanged(currentHealth, maxHealth);
+        GetComponent<FpsMovement>().FreezeScreen();
+        Time.timeScale = 0;
+        gameOverScreen.SetActive(true);
+        gameOverSound.Play(0);
+        //Wait for 4 seconds
+        yield return StartCoroutine(CoroutineUtil.WaitForRealSeconds(7));
+        SceneManager.LoadScene(mainMenuScene);
     }
 
     private void OnTriggerStay(Collider other)
@@ -71,9 +68,21 @@ public class PlayerController : MonoBehaviour
                 if (other.TryGetComponent(typeof(PickupItem), out Component pickupitem))
                 {
                     this.pickupItem = pickupitem.GetComponent<PickupItem>();
+                    Debug.Log(pickupItem.ItemDrop.ItemName);
                     pickupItem.Interact();
                 }
             }
+        }
+    }
+}
+public static class CoroutineUtil
+{
+    public static IEnumerator WaitForRealSeconds(float time)
+    {
+        float start = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup < start + time)
+        {
+            yield return null;
         }
     }
 }

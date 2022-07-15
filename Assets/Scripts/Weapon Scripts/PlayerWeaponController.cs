@@ -11,6 +11,7 @@ public class PlayerWeaponController : MonoBehaviour
     Transform spawnProjectile;
     Transform startSpawnPoint;
     IWeapon equippedWeapon;
+    public AudioSource equipSound;
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class PlayerWeaponController : MonoBehaviour
         characterStats.AddStatBonus(itemToEquip.Stats);        
         UIEventHandler.ItemEquipped(itemToEquip);
         UIEventHandler.StatsChanged();
+        equipSound.Play(0);
     }
 
     public void UnequipWeapon()

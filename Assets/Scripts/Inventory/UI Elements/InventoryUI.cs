@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    public RectTransform inventoryPanel;
+    public GameObject inventoryPanel;
     public RectTransform scrollViewContent;
     InventoryUIItem itemContainer { get; set; }
     bool menuIsActive { get; set; }
@@ -15,15 +15,7 @@ public class InventoryUI : MonoBehaviour
     {
         itemContainer = Resources.Load<InventoryUIItem>("UI/Item_Container");
         UIEventHandler.OnItemAddedToInventory += ItemAdded;
-        inventoryPanel.gameObject.SetActive(false);
-    }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            menuIsActive = !menuIsActive;
-            inventoryPanel.gameObject.SetActive(menuIsActive);
-        }
+        inventoryPanel.SetActive(false);
     }
 
     public void ItemAdded(Item item)

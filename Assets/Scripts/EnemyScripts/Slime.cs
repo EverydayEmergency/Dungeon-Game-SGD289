@@ -13,6 +13,7 @@ public class Slime : MonoBehaviour, IEnemy
     private NavMeshAgent navAgent;
     private CharacterStats characterStats;
     private Collider[] withinAggroColliders;
+    public AudioSource squish;
     public int Experience { get; set; }
     public DropTable DropTable { get; set; }
     public PickupItem pickupItem;
@@ -22,6 +23,7 @@ public class Slime : MonoBehaviour, IEnemy
     bool moving = false;
     bool attacking = false;
     bool dying = false;
+    bool hit = false;
     void Start()
     {
         DropTable = new DropTable();
@@ -29,14 +31,15 @@ public class Slime : MonoBehaviour, IEnemy
         {
             new LootDrop("bronze_sword", 5),
             new LootDrop("fire_staff", 5),
-            new LootDrop("health_potion", 10)
+            new LootDrop("health_potion", 15)
         };
 
         player = GameManager.gm.player.GetComponent<PlayerController>();
         Experience = (int)((player.playerLevel.Level * 50) * 1.5);
         navAgent = GetComponent<NavMeshAgent>();
         characterStats = new CharacterStats(10, 6, 0, 2);
-        maxHealth = 30;
+        if (GlobalVar.floorNum <= 5)
+            maxHealth = 25 * GlobalVar.floorNum;
         currenthHealth = maxHealth;
         anim = GetComponent<Animator>();
     }
@@ -55,61 +58,87 @@ public class Slime : MonoBehaviour, IEnemy
         if (GlobalVar.floorNum >= 3)
         {
             DropTable.AddItemToDrop("silver_sword", 2);
-            Debug.Log("Adding new weapon to drops");
         }
         if (GlobalVar.floorNum >= 6)
         {
             DropTable.AddItemToDrop("gold_sword", 1);
-            Debug.Log("Adding new weapon to drops");
         }
     }
 
     public void PerformAttack()
     {
+        
         moving = false;
-        attacking = true;
         anim.SetBool("Moving", moving);
-        Debug.Log("Attacking");
-        anim.SetBool("Attack", attacking);
+        anim.SetTrigger("Attacking");
+    }
+
+    public void playerHit()
+    {
+        if (hit)
+        {
+            player.currentHealth -= 5;
+            hit = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (attacking == true && moving == false)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                hit = true;
+            }
+        }
+    }
+
+    IEnumerator wait()
+    {
+        
+        //Wait for 4 seconds
+        yield return new WaitForSecondsRealtime(3);
+        attacking = true;
+      
     }
 
     public void TakeDamage(int amount)
-    {     
-        if(currenthHealth <= 0)
+    {
+        if (currenthHealth <= 0)
         {
             dying = true;
             attacking = false;
             moving = false;
             anim.SetBool("Moving", moving);
-            anim.SetBool("Attack", attacking);
+            squish.Play(0);
             anim.SetTrigger("Dying");
         }
         else
         {
-            Debug.Log("Damage");
             anim.SetTrigger("TakeDamage");
+            squish.Play(0);
             currenthHealth -= amount;
         }
-    }  
+    }
 
     void ChasePlayer(PlayerController player)
     {
-        Debug.Log("Chasing");
-        if(attacking == false)
+        if (attacking == false)
             moving = true;
         navAgent.SetDestination(player.transform.position);
         this.player = player;
         anim.SetBool("Moving", moving);
+        FaceTarget();
         if (navAgent.remainingDistance <= navAgent.stoppingDistance)
         {
-            FaceTarget();
             if (!IsInvoking("PerformAttack"))
-            {           
-                InvokeRepeating("PerformAttack", .5f, 2f);
+            {
+                attacking = true;
+                InvokeRepeating("PerformAttack", 0.5f, 2f);
             }
         }
         else
-        {      
+        {
             CancelInvoke("PerformAttack");
         }
         navAgent.SetDestination(player.transform.position);
@@ -129,12 +158,13 @@ public class Slime : MonoBehaviour, IEnemy
         Destroy(gameObject);
     }
 
-    void DropLoot() 
+    void DropLoot()
     {
         Item item = DropTable.GetDrop();
         if (item != null)
         {
-            PickupItem instance = Instantiate(pickupItem, transform.position, Quaternion.identity);
+            Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+            PickupItem instance = Instantiate(pickupItem, spawnPos, Quaternion.identity);
             instance.ItemDrop = item;
         }
     }

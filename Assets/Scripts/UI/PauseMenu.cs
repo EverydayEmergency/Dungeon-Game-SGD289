@@ -8,44 +8,46 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject canvas;
-    private static List<Transform> changedUI;
-    
+    public List<GameObject> changedUI = new List<GameObject>();
+    public Button pauseButton;
+    public Button backButton;
 
-    private List<Transform> GetObjectsInLayer(GameObject canvas, int layer)
+    private void Start()
     {
-        List<Transform> ret = new List<Transform>();
-        foreach (Transform t in canvas.GetComponentsInChildren(typeof(Transform), false))
-        {
-            if (t.gameObject.layer == layer && t.gameObject.activeSelf == true)
-            {
-                if (t.gameObject != canvas)
-                    ret.Add(t);
-            }
-        }
-        return ret;
+        pauseButton.onClick.AddListener(Pause);
+        backButton.onClick.AddListener(Resume);
     }
+   
+    //private void GetObjectsInLayer(GameObject canvas, int layer)
+    //{
+    //    List<RectTransform> ret = new List<RectTransform>();
+    //    foreach (RectTransform t in canvas.GetComponentsInChildren(typeof(Transform), false))
+    //    {
+    //        Debug.Log(t.name);
+    //        if (t.gameObject.name != "Canvas")
+    //        {
+    //            changedUI.Add(t);
+    //        }
+    //    }       
+    //}
     public void Resume()
     {
-        if (changedUI != null)
+        for (int i = 0; i < changedUI.Count; i++)
         {
-            foreach (Transform getObject in changedUI)
-            {
-                getObject.gameObject.SetActive(true);
-            }
+            changedUI[i].SetActive(!changedUI[i].activeSelf);
         }
+
         GameManager.gm.background.SetActive(false);
         GameManager.gm.pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = false;
-        changedUI.Clear();
+        GameIsPaused = false;      
     }
 
     public void Pause()
     {
-        changedUI = GetObjectsInLayer(canvas, 5);
-        foreach (Transform getObject in changedUI)
+        for (int i = 0; i < changedUI.Count; i++)
         {
-            getObject.gameObject.SetActive(false);
+            changedUI[i].SetActive(!changedUI[i].activeSelf);
         }
         GameManager.gm.background.SetActive(true);
         GameManager.gm.pauseMenuUI.SetActive(true);
